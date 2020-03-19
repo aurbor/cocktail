@@ -1,4 +1,4 @@
-function async getSearchTerm() {
+function getSearchTerm() {
     const searchTerm = document.getElementById("searchBox").value;
     // console.log(searchTerm);
 
@@ -11,9 +11,9 @@ function async getSearchTerm() {
         },
         body: JSON.stringify(data)
     }
-
-    const apiGet = await fetch('/getCocktail', fetchOptions);
-    const drinkData = await apiGet.json();
-    console.log(drinkData);
-    });
-}
+    
+    fetch('/getCocktail', fetchOptions).then(async res => {
+        json = await res.json();
+        console.log(json);
+    })
+};
