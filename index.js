@@ -17,30 +17,35 @@ app.post('/getCocktail', (req, res) => {
     const searchTerm = req.body.searchTerm;
     const apiURI = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s=";
     const apiCall = apiURI + searchTerm;
+    
 
-    const callData = async apiCall => {
+    const callData = async () => {
         try {
+            console.log('Received POST request from client!');
             const response = await axios.get(apiCall);
             const data = response.data.drinks[0];
             return data;
-            // console.log(data);
+            //console.log(data);
         } catch (error) {
             console.log(error);
         }
     };
 
-    callData(apiCall);
+    const returnData = async () => {
+        const recipe = await callData()
+        drinkID = recipe.idDrink;
+        drinkName = recipe.strDrink;
+        drinkImg = recipe.strDrinkThumb;
 
-    /* drinkID = recipe.idDrink;
-    drinkName = recipe.strDrink;
-    drinkImg = recipe.strDrinkThumb; */
+        res.json({
+            Status: '200',
+            myDrinkID: recipe.drinkID,
+            myDrinkName: drinkName,
+            myDrinkImg: drinkImg
+        });
+    }
 
-    res.json({
-        Status: '200',
- /*        myDrinkID: recipe.drinkID,
-        myDrinkName: drinkName,
-        myDrinkImg: drinkImg */
-    });
+    returnData();
     
 });
 
