@@ -15,5 +15,8 @@ function getSearchTerm() {
     fetch('/getCocktail', fetchOptions).then(async res => {
         json = await res.json();
         console.log(json);
+
+        document.getElementById('drinkName').innerHTML = json.myDrinkName;
+        document.getElementById('drinkImg').innerHTML = "<img src=\"" + json.myDrinkImg + "\" >";
     })
 };
