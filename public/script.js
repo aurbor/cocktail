@@ -1,4 +1,4 @@
-function getSearchTerm() {
+function async getSearchTerm() {
     const searchTerm = document.getElementById("searchBox").value;
     // console.log(searchTerm);
 
@@ -12,5 +12,8 @@ function getSearchTerm() {
         body: JSON.stringify(data)
     }
 
-    fetch('/getCocktail', fetchOptions)
+    const apiGet = await fetch('/getCocktail', fetchOptions);
+    const drinkData = await apiGet.json();
+    console.log(drinkData);
+    });
 }

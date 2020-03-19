@@ -39,10 +39,12 @@ app.post('/getCocktail', (req, res) => {
 
         res.json({
             Status: '200',
-            myDrinkID: recipe.drinkID,
+            myDrinkID: drinkID,
             myDrinkName: drinkName,
             myDrinkImg: drinkImg
         });
+
+        //console.log(res);
     }
 
     returnData();
